@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: twagner <twagner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/21 10:00:20 by twagner           #+#    #+#             */
-/*   Updated: 2021/10/26 10:11:46 by twagner          ###   ########.fr       */
+/*   Created: 2021/05/23 14:29:40 by twagner           #+#    #+#             */
+/*   Updated: 2021/10/26 10:07:20 by twagner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+void	*ft_realloc(void *ptr, size_t size)
 {
-	char	*dup;
+	char	*new;
 
-	dup = (char *)malloc(sizeof(*dup) * (ft_strlen(s1) + 1));
-	if (!dup)
-		return (NULL);
-	return (ft_strcpy(dup, s1));
+	if (!ptr)
+	{
+		new = (char *)malloc(sizeof(*new) * size);
+		if (!new)
+			return (ptr);
+		return (new);
+	}
+	if (size == 0 && ptr)
+	{
+		new = (char *)malloc(sizeof(*new));
+		if (!new)
+			return (ptr);
+		new[0] = 0;
+		return (new);
+	}
+	new = (char *)malloc(sizeof(*new) * size);
+	if (!new)
+		return (ptr);
+	new = ft_strcpy(new, ptr);
+	free(ptr);
+	return (new);
 }
