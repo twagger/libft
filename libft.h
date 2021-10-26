@@ -6,13 +6,24 @@
 /*   By: twagner <twagner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:37:12 by twagner           #+#    #+#             */
-/*   Updated: 2021/10/23 09:31:03 by twagner          ###   ########.fr       */
+/*   Updated: 2021/10/26 09:54:41 by twagner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <stdio.h>
 # include <stddef.h>
+# include <stdlib.h>
+# define ERROR -1
+# define STD_LINE 1
+# define LAST_LINE 0
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
 
 typedef struct s_list
 {
@@ -64,5 +75,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_get_next_line(int fd, char **line, int to_free);
 
 #endif
