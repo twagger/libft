@@ -44,7 +44,8 @@ SRCS		= ft_memset.c \
 			  ft_lstdelone.c \
 			  ft_lstclear.c \
 			  ft_lstiter.c \
-			  ft_lstmap.c
+			  ft_lstmap.c \
+			  ft_strchr_index.c
 
 BSRCS		= ft_lstnew.c \
 			  ft_lstadd_front.c \
